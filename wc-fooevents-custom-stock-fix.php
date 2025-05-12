@@ -19,7 +19,7 @@ function convertir_cancelado_a_devuelto_si_es_evento_v2($order_id, $old_status, 
             }
         }
         if ($tiene_eventos) {
-            $order->update_status('refunded', 'Cambio automático desde cancelado para liberar entradas.');
+            $order->update_status('refunded', 'Cambio automático de cancelado a devuelto.');
         }
     }
 }
