@@ -38,6 +38,9 @@ function convertir_cancelado_a_devuelto_si_es_evento_v2($order_id, $old_status, 
             $product_id = $item->get_product_id();
             if (get_post_meta($product_id, '_eventmagic_event', true)) {
                 $tiene_eventos = true;
+
+                // Ajusta el stock usando función externa
+                ajustar_stock_v1($product_id);
                 break;
             }
         }
@@ -50,7 +53,7 @@ function convertir_cancelado_a_devuelto_si_es_evento_v2($order_id, $old_status, 
     }
 }
 
-function ajustar_stock($product_id) {
+function ajustar_stock_v1($product_id) {
     if ('yes' === get_post_meta($product_id, '_manage_stock', true)) {
         // Contar Entradas vendidas
         $entradas_vendidas = count(get_posts([
